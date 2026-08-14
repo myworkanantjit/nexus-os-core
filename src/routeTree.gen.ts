@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as CalendarRouteImport } from './routes/calendar'
+import { Route as KnowledgeRouteImport } from './routes/knowledge'
 import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as WorkspacesRouteImport } from './routes/workspaces'
 
@@ -30,6 +31,11 @@ const CalendarRoute = CalendarRouteImport.update({
   path: '/calendar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KnowledgeRoute = KnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TasksRoute = TasksRouteImport.update({
   id: '/tasks',
   path: '/tasks',
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/calendar': typeof CalendarRoute
+  '/knowledge': typeof KnowledgeRoute
   '/tasks': typeof TasksRoute
   '/workspaces': typeof WorkspacesRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/calendar': typeof CalendarRoute
+  '/knowledge': typeof KnowledgeRoute
   '/tasks': typeof TasksRoute
   '/workspaces': typeof WorkspacesRoute
 }
@@ -60,21 +68,31 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/calendar': typeof CalendarRoute
+  '/knowledge': typeof KnowledgeRoute
   '/tasks': typeof TasksRoute
   '/workspaces': typeof WorkspacesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/assistant' | '/calendar' | '/tasks' | '/workspaces'
+  fullPaths:
+    '/' | '/assistant' | '/calendar' | '/knowledge' | '/tasks' | '/workspaces'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assistant' | '/calendar' | '/tasks' | '/workspaces'
-  id: '__root__' | '/' | '/assistant' | '/calendar' | '/tasks' | '/workspaces'
+  to: '/' | '/assistant' | '/calendar' | '/knowledge' | '/tasks' | '/workspaces'
+  id:
+    | '__root__'
+    | '/'
+    | '/assistant'
+    | '/calendar'
+    | '/knowledge'
+    | '/tasks'
+    | '/workspaces'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssistantRoute: typeof AssistantRoute
   CalendarRoute: typeof CalendarRoute
+  KnowledgeRoute: typeof KnowledgeRoute
   TasksRoute: typeof TasksRoute
   WorkspacesRoute: typeof WorkspacesRoute
 }
@@ -102,6 +120,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CalendarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/knowledge': {
+      id: '/knowledge'
+      path: '/knowledge'
+      fullPath: '/knowledge'
+      preLoaderRoute: typeof KnowledgeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tasks': {
       id: '/tasks'
       path: '/tasks'
@@ -123,6 +148,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssistantRoute: AssistantRoute,
   CalendarRoute: CalendarRoute,
+  KnowledgeRoute: KnowledgeRoute,
   TasksRoute: TasksRoute,
   WorkspacesRoute: WorkspacesRoute,
 }
