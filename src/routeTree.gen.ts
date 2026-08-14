@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as CalendarRouteImport } from './routes/calendar'
+import { Route as CommunicationsRouteImport } from './routes/communications'
 import { Route as FilesRouteImport } from './routes/files'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
 import { Route as TasksRouteImport } from './routes/tasks'
@@ -30,6 +31,11 @@ const AssistantRoute = AssistantRouteImport.update({
 const CalendarRoute = CalendarRouteImport.update({
   id: '/calendar',
   path: '/calendar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunicationsRoute = CommunicationsRouteImport.update({
+  id: '/communications',
+  path: '/communications',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FilesRoute = FilesRouteImport.update({
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/calendar': typeof CalendarRoute
+  '/communications': typeof CommunicationsRoute
   '/files': typeof FilesRoute
   '/knowledge': typeof KnowledgeRoute
   '/tasks': typeof TasksRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/calendar': typeof CalendarRoute
+  '/communications': typeof CommunicationsRoute
   '/files': typeof FilesRoute
   '/knowledge': typeof KnowledgeRoute
   '/tasks': typeof TasksRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/calendar': typeof CalendarRoute
+  '/communications': typeof CommunicationsRoute
   '/files': typeof FilesRoute
   '/knowledge': typeof KnowledgeRoute
   '/tasks': typeof TasksRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/assistant'
     | '/calendar'
+    | '/communications'
     | '/files'
     | '/knowledge'
     | '/tasks'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/assistant'
     | '/calendar'
+    | '/communications'
     | '/files'
     | '/knowledge'
     | '/tasks'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/assistant'
     | '/calendar'
+    | '/communications'
     | '/files'
     | '/knowledge'
     | '/tasks'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssistantRoute: typeof AssistantRoute
   CalendarRoute: typeof CalendarRoute
+  CommunicationsRoute: typeof CommunicationsRoute
   FilesRoute: typeof FilesRoute
   KnowledgeRoute: typeof KnowledgeRoute
   TasksRoute: typeof TasksRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/calendar'
       fullPath: '/calendar'
       preLoaderRoute: typeof CalendarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/communications': {
+      id: '/communications'
+      path: '/communications'
+      fullPath: '/communications'
+      preLoaderRoute: typeof CommunicationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/files': {
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssistantRoute: AssistantRoute,
   CalendarRoute: CalendarRoute,
+  CommunicationsRoute: CommunicationsRoute,
   FilesRoute: FilesRoute,
   KnowledgeRoute: KnowledgeRoute,
   TasksRoute: TasksRoute,

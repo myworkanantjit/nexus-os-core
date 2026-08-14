@@ -54,7 +54,7 @@ const threads = [
 
 function CommunicationsPage() {
   const [active, setActive] = useState(0);
-  const thread = threads[active];
+  const thread = threads[active] ?? threads[0]!;
   const [reply, setReply] = useState("");
 
   return (
