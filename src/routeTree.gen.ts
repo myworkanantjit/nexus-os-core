@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssistantRouteImport } from './routes/assistant'
+import { Route as AutomationsRouteImport } from './routes/automations'
 import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as CommunicationsRouteImport } from './routes/communications'
 import { Route as FilesRouteImport } from './routes/files'
@@ -26,6 +27,11 @@ const IndexRoute = IndexRouteImport.update({
 const AssistantRoute = AssistantRouteImport.update({
   id: '/assistant',
   path: '/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AutomationsRoute = AutomationsRouteImport.update({
+  id: '/automations',
+  path: '/automations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CalendarRoute = CalendarRouteImport.update({
@@ -62,6 +68,7 @@ const WorkspacesRoute = WorkspacesRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
+  '/automations': typeof AutomationsRoute
   '/calendar': typeof CalendarRoute
   '/communications': typeof CommunicationsRoute
   '/files': typeof FilesRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
+  '/automations': typeof AutomationsRoute
   '/calendar': typeof CalendarRoute
   '/communications': typeof CommunicationsRoute
   '/files': typeof FilesRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
+  '/automations': typeof AutomationsRoute
   '/calendar': typeof CalendarRoute
   '/communications': typeof CommunicationsRoute
   '/files': typeof FilesRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/assistant'
+    | '/automations'
     | '/calendar'
     | '/communications'
     | '/files'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/assistant'
+    | '/automations'
     | '/calendar'
     | '/communications'
     | '/files'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/assistant'
+    | '/automations'
     | '/calendar'
     | '/communications'
     | '/files'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssistantRoute: typeof AssistantRoute
+  AutomationsRoute: typeof AutomationsRoute
   CalendarRoute: typeof CalendarRoute
   CommunicationsRoute: typeof CommunicationsRoute
   FilesRoute: typeof FilesRoute
@@ -148,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/assistant'
       fullPath: '/assistant'
       preLoaderRoute: typeof AssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/automations': {
+      id: '/automations'
+      path: '/automations'
+      fullPath: '/automations'
+      preLoaderRoute: typeof AutomationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/calendar': {
@@ -198,6 +218,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssistantRoute: AssistantRoute,
+  AutomationsRoute: AutomationsRoute,
   CalendarRoute: CalendarRoute,
   CommunicationsRoute: CommunicationsRoute,
   FilesRoute: FilesRoute,
