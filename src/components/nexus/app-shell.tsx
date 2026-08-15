@@ -99,7 +99,10 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [commandOpen, setCommandOpen] = useState(false);
   const [createOpen, setCreateOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { preview } = useLayoutPreview();
+  const forceMobile = preview === "mobile";
   const pathname = useRouterState({ select: (state) => state.location.pathname });
+
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
