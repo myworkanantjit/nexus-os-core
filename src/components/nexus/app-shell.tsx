@@ -186,7 +186,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               <button
                 type="button"
                 onClick={() => setCommandOpen(true)}
-                className={cn("glass glass-hover col-span-2 hidden w-full items-center gap-3 rounded-xl px-4 py-2.5 text-left sm:flex", !forceMobile && "lg:col-span-1 lg:w-[420px]")}
+                className={cn("glass glass-hover col-span-2 w-full items-center gap-3 rounded-xl px-4 py-2.5 text-left", forceMobile ? "hidden" : "hidden sm:flex lg:col-span-1 lg:w-[420px]")}
               >
                 <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
                 <span className="min-w-0 flex-1 truncate text-sm text-muted-foreground">
@@ -201,7 +201,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="sm:hidden"
+                  className={cn(forceMobile ? "" : "sm:hidden")}
                   aria-label="Search"
                   onClick={() => setCommandOpen(true)}
                 >

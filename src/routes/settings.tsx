@@ -142,13 +142,13 @@ function SettingsPage() {
         </TabsList>
 
         <TabsContent value="appearance" className="space-y-6">
-          <GlassPanel strong className="p-6">
+          <GlassPanel strong className="@container p-6">
             <SectionTitle title="Theme" />
             <p className="mt-1 text-sm text-muted-foreground">
               Dark is the canonical Nexus environment. Light is a separately designed bright glass
               surface.
             </p>
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            <div className="mt-5 grid gap-3 @md:grid-cols-3">
               {themeOptions.map((option) => (
                 <OptionCard
                   key={option.value}
@@ -162,13 +162,13 @@ function SettingsPage() {
             </div>
           </GlassPanel>
 
-          <GlassPanel strong className="p-6">
+          <GlassPanel strong className="@container p-6">
             <SectionTitle title="View & layout" />
             <p className="mt-1 text-sm text-muted-foreground">
               Switch the shell between the desktop composition and the mobile layout to inspect both
               experiences.
             </p>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            <div className="mt-5 grid gap-3 @md:grid-cols-2">
               {layoutOptions.map((option) => (
                 <OptionCard
                   key={option.value}
