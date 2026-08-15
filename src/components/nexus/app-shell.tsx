@@ -177,7 +177,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 </Sheet>
                 <Link to="/" className="flex items-center gap-2">
                   <NexusMark className="h-7 w-7" />
-                  <span className="text-sm font-semibold tracking-[0.14em]">NEXUS</span>
+                  <span className="hidden text-sm font-semibold tracking-[0.14em] sm:inline">NEXUS</span>
                 </Link>
               </div>
 
