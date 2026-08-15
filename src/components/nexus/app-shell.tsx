@@ -16,7 +16,9 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/s
 import { cn } from "@/lib/utils";
 import { BootScreen } from "./boot-screen";
 import { CommandPalette } from "./command-palette";
+import { useLayoutPreview } from "./layout-provider";
 import { mobileNavItems, navItems } from "./nav-items";
+
 import { NexusLogo, NexusMark } from "./nexus-logo";
 import { QuickCreateDialog } from "./quick-create-dialog";
 
