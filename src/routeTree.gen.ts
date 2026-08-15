@@ -17,6 +17,7 @@ import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as CommunicationsRouteImport } from './routes/communications'
 import { Route as FilesRouteImport } from './routes/files'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as WorkspacesRouteImport } from './routes/workspaces'
 
@@ -60,6 +61,11 @@ const KnowledgeRoute = KnowledgeRouteImport.update({
   path: '/knowledge',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TasksRoute = TasksRouteImport.update({
   id: '/tasks',
   path: '/tasks',
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/communications': typeof CommunicationsRoute
   '/files': typeof FilesRoute
   '/knowledge': typeof KnowledgeRoute
+  '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/workspaces': typeof WorkspacesRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/communications': typeof CommunicationsRoute
   '/files': typeof FilesRoute
   '/knowledge': typeof KnowledgeRoute
+  '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/workspaces': typeof WorkspacesRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/communications': typeof CommunicationsRoute
   '/files': typeof FilesRoute
   '/knowledge': typeof KnowledgeRoute
+  '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/workspaces': typeof WorkspacesRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/communications'
     | '/files'
     | '/knowledge'
+    | '/settings'
     | '/tasks'
     | '/workspaces'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/communications'
     | '/files'
     | '/knowledge'
+    | '/settings'
     | '/tasks'
     | '/workspaces'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/communications'
     | '/files'
     | '/knowledge'
+    | '/settings'
     | '/tasks'
     | '/workspaces'
   fileRoutesById: FileRoutesById
@@ -156,6 +168,7 @@ export interface RootRouteChildren {
   CommunicationsRoute: typeof CommunicationsRoute
   FilesRoute: typeof FilesRoute
   KnowledgeRoute: typeof KnowledgeRoute
+  SettingsRoute: typeof SettingsRoute
   TasksRoute: typeof TasksRoute
   WorkspacesRoute: typeof WorkspacesRoute
 }
@@ -218,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KnowledgeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tasks': {
       id: '/tasks'
       path: '/tasks'
@@ -244,6 +264,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunicationsRoute: CommunicationsRoute,
   FilesRoute: FilesRoute,
   KnowledgeRoute: KnowledgeRoute,
+  SettingsRoute: SettingsRoute,
   TasksRoute: TasksRoute,
   WorkspacesRoute: WorkspacesRoute,
 }
